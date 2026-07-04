@@ -208,7 +208,25 @@ h1 .smile-word{position:relative;display:inline-block;background:linear-gradient
 .form-msg.ok{color:#1f7a3f}
 .form-msg.err{color:var(--coral)}
 
-/* ---------- testimonial slider ---------- */
+/* ---------- packages ---------- */
+.packages{padding:110px 0;background:var(--cloud)}
+.pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:50px;align-items:stretch}
+.pkg-card{background:var(--milk);border:2px solid var(--ink);border-radius:24px;padding:36px 30px;display:flex;flex-direction:column;position:relative;transition:transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .35s ease}
+.pkg-card:hover{transform:translateY(-8px);box-shadow:0 24px 48px rgba(0,0,0,.12)}
+.pkg-card.highlighted{background:var(--ink);color:var(--milk);border-color:var(--ink)}
+.pkg-badge{position:absolute;top:-14px;right:24px;background:var(--sun);color:var(--ink);font-family:var(--label);font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:6px 14px;border-radius:999px;border:2px solid var(--ink)}
+.pkg-tier{font-family:var(--label);font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--cobalt);margin-bottom:8px}
+.pkg-card.highlighted .pkg-tier{color:var(--sun)}
+.pkg-name{font-family:var(--display);font-weight:800;font-size:1.7rem;letter-spacing:-.01em;margin-bottom:8px}
+.pkg-tagline{font-size:.95rem;opacity:.75;margin-bottom:20px;min-height:42px}
+.pkg-price{font-family:var(--label);font-weight:700;font-size:1.15rem;margin-bottom:24px;padding-bottom:24px;border-bottom:2px solid rgba(0,0,0,.1)}
+.pkg-card.highlighted .pkg-price{border-color:rgba(255,255,255,.2)}
+.pkg-features{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:28px;flex:1}
+.pkg-features li{display:flex;gap:10px;font-size:.92rem;align-items:flex-start}
+.pkg-features li svg{width:18px;height:18px;flex:none;margin-top:2px;color:var(--coral)}
+.pkg-card.highlighted .pkg-features li svg{color:var(--sun)}
+.pkg-cta{text-align:center}
+@media(max-width:900px){.pkg-grid{grid-template-columns:1fr}}
 .testimonials{background:var(--ink);color:var(--milk);padding:110px 0;position:relative;overflow:hidden}
 .testimonials .eyebrow{color:var(--sun)}
 .testimonials h2{color:var(--milk)}
@@ -402,6 +420,16 @@ footer{background:var(--ink);color:var(--milk);border-top:1px solid #33301f;padd
     <div class="polaroid-stack reveal d2" aria-hidden="true">
       <figure class="polaroid p1"><div class="ph"><svg style="color:var(--ink)"><use href="#smilearc"/></svg></div><figcaption>Story № 001 — coming soon</figcaption></figure>
       <figure class="polaroid p2"><div class="ph"><svg style="color:var(--milk)"><use href="#smilearc"/></svg></div><figcaption>Story № 002 — coming soon</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="packages" id="packages">
+  <div class="wrap">
+    <span class="eyebrow reveal"><span class="dot"></span>Packages</span>
+    <h2 class="reveal d1">Pick your smile.</h2>
+    <div class="pkg-grid" id="pkgGrid">
+      <p style="grid-column:1/-1">Loading packages...</p>
     </div>
   </div>
 </section>
@@ -612,6 +640,30 @@ fetch('/content/seo.json').then(r=>r.json()).then(d=>{
     if(m)m.setAttribute('content',d.description);
   }
 }).catch(()=>{});
+
+// packages
+fetch('/content/packages.json').then(r=>r.json()).then(d=>{
+  const grid=document.getElementById('pkgGrid');
+  const pkgs=d.packages||[];
+  if(!pkgs.length){grid.innerHTML='<p style="grid-column:1/-1">Packages coming soon.</p>';return}
+  grid.innerHTML=pkgs.map((p,i)=>{
+    const feats=(p.features||[]).map(f=>`<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg>${f.feature}</li>`).join('');
+    return `<div class="pkg-card reveal d${i+1}${p.highlighted?' highlighted':''}">
+      ${p.highlighted?'<span class="pkg-badge">Most popular</span>':''}
+      <span class="pkg-tier">${p.tier||''}</span>
+      <h3 class="pkg-name">${p.name||''}</h3>
+      <p class="pkg-tagline">${p.tagline||''}</p>
+      <p class="pkg-price">${p.price||''}</p>
+      <ul class="pkg-features">${feats}</ul>
+      <div class="pkg-cta"><a class="btn${p.highlighted?' light':''}" href="https://wa.me/2347065191410?text=${encodeURIComponent('Hi WNTS Media, I\'d like to discuss the '+(p.name||p.tier)+' package.')}" target="_blank" rel="noopener">Discuss on WhatsApp</a></div>
+    </div>`;
+  }).join('');
+  const cards=grid.querySelectorAll('.reveal');
+  const io2=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io2.unobserve(e.target)}})},{threshold:.1});
+  cards.forEach(c=>io2.observe(c));
+}).catch(()=>{
+  document.getElementById('pkgGrid').innerHTML='<p style="grid-column:1/-1">Couldn\'t load packages right now.</p>';
+});
 </script>
 </body>
 </html>
