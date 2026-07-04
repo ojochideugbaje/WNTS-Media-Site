@@ -45,6 +45,25 @@ collections:
           - { label: "Meta Description (shows under the title in Google)", name: "description", widget: "text" }
           - { label: "Note", name: "note", widget: "text", default: "Changing these updates Google search results within a few days. The social media share preview (WhatsApp/Twitter/LinkedIn image+text) is separate and needs a manual code update — ask Claude to change it.", required: false }
 
+  - name: "blog"
+    label: "Blog"
+    files:
+      - name: "posts"
+        label: "Blog Posts"
+        file: "content/blog.json"
+        fields:
+          - label: "Posts"
+            name: "posts"
+            widget: "list"
+            summary: "{{title}} — {{date}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "URL slug (no spaces, e.g. our-first-project)", name: "slug", widget: "string" }
+              - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
+              - { label: "Cover image", name: "cover", widget: "image", required: false }
+              - { label: "Excerpt (shows on blog list page)", name: "excerpt", widget: "text" }
+              - { label: "Body", name: "body", widget: "markdown" }
+
   - name: "services"
     label: "Services"
     folder: "content/services"
