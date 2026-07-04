@@ -10,42 +10,75 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --sun:#FFC61A;--ink:#15130B;--milk:#FFFFFF;--cloud:#F7F6F2;--cobalt:#2B3CFF;--coral:#FF5A47;
+  --sun:#FFC61A;--ink:#15130B;--milk:#FFFFFF;--cloud:#F7F6F2;--cobalt:#2B3CFF;--coral:#FF5A47;--lilac:#B8A6FF;
   --display:'Bricolage Grotesque',sans-serif;--body:'Instrument Sans',sans-serif;--label:'Space Grotesk',monospace;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:var(--body);background:var(--milk);color:var(--ink);line-height:1.6}
-.wrap{max-width:900px;margin:0 auto;padding:0 24px}
+body{font-family:var(--body);background:var(--milk);color:var(--ink);line-height:1.6;overflow-x:hidden}
+.wrap{max-width:900px;margin:0 auto;padding:0 24px;position:relative;z-index:2}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--cobalt);outline-offset:3px;border-radius:4px}
-nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,.85);backdrop-filter:blur(14px);border-bottom:1px solid rgba(0,0,0,.06)}
+
+.blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.3;pointer-events:none;z-index:1;animation:float 14s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-40px) scale(1.1)}66%{transform:translate(-20px,20px) scale(.95)}}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,255,255,.8);backdrop-filter:blur(14px);border-bottom:1px solid rgba(0,0,0,.06);transition:box-shadow .3s ease}
+nav.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.06)}
 .nav-in{max-width:1200px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;transition:transform .3s cubic-bezier(.34,1.56,.64,1)}
+.logo:hover{transform:scale(1.05) rotate(-2deg)}
 .logo img{height:34px;width:auto;display:block}
 .nav-links{display:flex;gap:24px;align-items:center;list-style:none}
-.nav-links a{text-decoration:none;font-weight:600;font-size:.95rem}
-.btn{display:inline-block;background:var(--ink);color:var(--sun);font-family:var(--label);font-weight:700;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;padding:12px 22px;border-radius:999px;text-decoration:none;border:3px solid var(--ink);transition:transform .2s ease,background .2s ease}
-.btn:hover{background:var(--coral);color:var(--ink);transform:translateY(-2px)}
-header.hero{padding:150px 0 60px;background:var(--cloud)}
-.eyebrow{font-family:var(--label);font-size:.78rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--cobalt)}
+.nav-links a{text-decoration:none;font-weight:600;font-size:.95rem;position:relative}
+.nav-links a:not(.btn)::after{content:'';position:absolute;left:0;right:100%;bottom:-4px;height:3px;background:var(--cobalt);border-radius:3px;transition:right .3s cubic-bezier(.34,1.56,.64,1)}
+.nav-links a:not(.btn):hover::after{right:0}
+.btn{display:inline-block;background:var(--ink);color:var(--sun);font-family:var(--label);font-weight:700;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;padding:12px 22px;border-radius:999px;text-decoration:none;border:3px solid var(--ink);transition:transform .3s cubic-bezier(.34,1.56,.64,1),background .2s ease,box-shadow .3s ease}
+.btn:hover{background:var(--coral);color:var(--ink);transform:translateY(-3px) scale(1.03);box-shadow:0 10px 24px rgba(255,90,71,.3)}
+
+header.hero{padding:150px 0 60px;background:var(--cloud);position:relative;overflow:hidden}
+.eyebrow{font-family:var(--label);font-size:.78rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--cobalt);display:inline-flex;align-items:center;gap:8px}
+.eyebrow .dot{width:9px;height:9px;border-radius:50%;background:var(--coral);animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:.5}}
 h1{font-family:var(--display);font-weight:800;font-size:clamp(2.4rem,6vw,4rem);letter-spacing:-.02em;margin:.4em 0 .3em}
 .sub{font-size:1.1rem;max-width:560px;color:#5a5747}
+
+.searchbar{max-width:900px;margin:36px auto 0;position:relative}
+.searchbar input{width:100%;padding:16px 50px 16px 20px;border-radius:999px;border:2px solid var(--ink);font-family:var(--body);font-size:1rem;background:var(--milk);transition:box-shadow .2s ease,transform .2s ease}
+.searchbar input:focus{outline:none;box-shadow:0 8px 24px rgba(43,60,255,.15);transform:scale(1.01)}
+.searchbar svg{position:absolute;right:20px;top:50%;transform:translateY(-50%);width:20px;height:20px;color:#999;pointer-events:none}
+
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.filter-chip{font-family:var(--label);font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:8px 16px;border-radius:999px;border:2px solid var(--ink);background:var(--milk);cursor:pointer;transition:all .25s cubic-bezier(.34,1.56,.64,1)}
+.filter-chip:hover{transform:translateY(-2px)}
+.filter-chip.active{background:var(--ink);color:var(--sun)}
+
 .posts{padding:70px 0 120px}
-.post-card{display:block;text-decoration:none;color:inherit;padding:32px 0;border-bottom:1px solid #eee;transition:transform .25s ease}
-.post-card:hover{transform:translateX(6px)}
-.post-date{font-family:var(--label);font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--cobalt);margin-bottom:10px;display:block}
-.post-title{font-family:var(--display);font-weight:800;font-size:1.6rem;letter-spacing:-.01em;margin-bottom:10px}
-.post-excerpt{color:#5a5747;font-size:1.02rem}
-.empty{padding:60px 0;color:#5a5747}
-footer{background:var(--ink);color:var(--milk);padding:26px 0;margin-top:0}
+#postList{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.post-card{display:flex;flex-direction:column;text-decoration:none;color:inherit;padding:30px;border-radius:20px;background:var(--cloud);border:2px solid transparent;opacity:0;transform:translateY(30px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1),border-color .3s ease,background .3s ease,box-shadow .3s ease;min-height:230px}
+.post-card.in{opacity:1;transform:none}
+.post-card:hover{border-color:var(--ink);background:var(--milk);box-shadow:0 20px 44px rgba(0,0,0,.1);transform:translateY(-8px)}
+.post-date{font-family:var(--label);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--cobalt);margin-bottom:10px;display:block}
+.post-title{font-family:var(--display);font-weight:800;font-size:1.3rem;line-height:1.2;letter-spacing:-.01em;margin-bottom:10px;transition:transform .2s ease}
+.post-card:hover .post-title{transform:translateX(4px)}
+.post-excerpt{color:#5a5747;font-size:.95rem;flex:1;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.read-more{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-family:var(--label);font-size:.78rem;font-weight:700;text-transform:uppercase;color:var(--ink)}
+.read-more svg{width:16px;height:16px;transition:transform .3s cubic-bezier(.34,1.56,.64,1)}
+.post-card:hover .read-more svg{transform:translateX(5px)}
+.empty{padding:60px 0;color:#5a5747;text-align:center;grid-column:1/-1}
+@media(max-width:900px){#postList{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){#postList{grid-template-columns:1fr}}
+
+footer{background:var(--ink);color:var(--milk);padding:26px 0}
 .foot-in{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:.85rem}
 .foot-in img{height:22px;filter:brightness(0) invert(1)}
 @media(max-width:640px){.nav-links{display:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.post-card{opacity:1;transform:none}}
 </style>
 </head>
 <body>
 
-<nav>
+<nav id="siteNav">
   <div class="nav-in">
     <a class="logo" href="/"><img src="/images/WNTS_logo.svg" alt="WNTS Media"></a>
     <ul class="nav-links">
@@ -57,10 +90,17 @@ footer{background:var(--ink);color:var(--milk);padding:26px 0;margin-top:0}
 </nav>
 
 <header class="hero">
+  <div class="blob" style="width:320px;height:320px;background:var(--sun);top:-100px;left:-100px"></div>
+  <div class="blob" style="width:260px;height:260px;background:var(--cobalt);top:20%;right:-80px;animation-delay:3s"></div>
   <div class="wrap">
-    <span class="eyebrow">The Blog</span>
+    <span class="eyebrow"><span class="dot"></span>The Blog</span>
     <h1>Thoughts, notes &amp; the occasional strong opinion.</h1>
     <p class="sub">Brand strategy, content lessons, and behind-the-scenes from the WNTS Media team.</p>
+    <div class="searchbar">
+      <input type="text" id="searchInput" placeholder="Search posts...">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+    </div>
+    <div class="filters" id="filterChips"></div>
   </div>
 </header>
 
@@ -78,22 +118,70 @@ footer{background:var(--ink);color:var(--milk);padding:26px 0;margin-top:0}
 </footer>
 
 <script>
-fetch('/content/blog.json').then(r=>r.json()).then(d=>{
+const navEl=document.getElementById('siteNav');
+window.addEventListener('scroll',()=>navEl.classList.toggle('scrolled',window.scrollY>10));
+
+let allPosts=[];
+let activeYear='all';
+
+function render(filterText){
   const list=document.getElementById('postList');
-  const posts=(d.posts||[]).slice().sort((a,b)=>new Date(b.date)-new Date(a.date));
-  if(!posts.length){list.innerHTML='<p class="empty">No posts yet — check back soon.</p>';return}
-  list.innerHTML=posts.map(p=>{
+  const q=(filterText||'').toLowerCase();
+  const filtered=allPosts.filter(p=>{
+    const matchesText = !q || (p.title+p.excerpt).toLowerCase().includes(q);
+    const matchesYear = activeYear==='all' || new Date(p.date).getFullYear().toString()===activeYear;
+    return matchesText && matchesYear;
+  });
+
+  if(!filtered.length){
+    list.innerHTML='<p class="empty">No posts match that search.</p>';
+    return;
+  }
+
+  list.innerHTML=filtered.map((p,i)=>{
     const d=new Date(p.date);
     const dateStr=isNaN(d)?'':d.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
-    return `<a class="post-card" href="/blog-post.html?slug=${encodeURIComponent(p.slug)}">
+    return `<a class="post-card" style="transition-delay:${i*0.06}s" href="/blog-post.html?slug=${encodeURIComponent(p.slug)}">
       <span class="post-date">${dateStr}</span>
       <h2 class="post-title">${p.title}</h2>
       <p class="post-excerpt">${p.excerpt||''}</p>
+      <span class="read-more">Read the post <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
     </a>`;
   }).join('');
+
+  const cards=list.querySelectorAll('.post-card');
+  const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.1});
+  cards.forEach(c=>io.observe(c));
+}
+
+function buildFilters(){
+  const years=[...new Set(allPosts.map(p=>new Date(p.date).getFullYear().toString()))].sort((a,b)=>b-a);
+  const wrap=document.getElementById('filterChips');
+  const chips=['all',...years];
+  wrap.innerHTML=chips.map(y=>`<button class="filter-chip${y==='all'?' active':''}" data-year="${y}">${y==='all'?'All posts':y}</button>`).join('');
+  wrap.querySelectorAll('.filter-chip').forEach(chip=>{
+    chip.addEventListener('click',()=>{
+      wrap.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));
+      chip.classList.add('active');
+      activeYear=chip.dataset.year;
+      render(document.getElementById('searchInput').value);
+    });
+  });
+}
+
+fetch('/content/blog.json').then(r=>r.json()).then(d=>{
+  allPosts=(d.posts||[]).slice().sort((a,b)=>new Date(b.date)-new Date(a.date));
+  if(!allPosts.length){
+    document.getElementById('postList').innerHTML='<p class="empty">No posts yet — check back soon.</p>';
+    return;
+  }
+  buildFilters();
+  render('');
 }).catch(()=>{
   document.getElementById('postList').innerHTML='<p class="empty">Couldn\'t load posts right now.</p>';
 });
+
+document.getElementById('searchInput').addEventListener('input',e=>render(e.target.value));
 </script>
 </body>
 </html>
