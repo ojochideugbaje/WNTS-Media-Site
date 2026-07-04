@@ -1,0 +1,47 @@
+{
+  "packages": [
+    {
+      "tier": "Starter",
+      "name": "Smile Kit",
+      "tagline": "For brands just getting their voice together",
+      "price": "Custom pricing — let's talk",
+      "highlighted": false,
+      "features": [
+        { "feature": "Brand positioning + messaging framework" },
+        { "feature": "Core visual identity refresh (logo, color, type)" },
+        { "feature": "1 month of social content" },
+        { "feature": "1 round of revisions" }
+      ]
+    },
+    {
+      "tier": "Growth",
+      "name": "Full Grin",
+      "tagline": "For brands ready to show up consistently",
+      "price": "Custom pricing — let's talk",
+      "highlighted": true,
+      "features": [
+        { "feature": "Everything in Smile Kit" },
+        { "feature": "Full brand identity system + guidelines" },
+        { "feature": "Ongoing content production (photo + video)" },
+        { "feature": "Monthly campaign planning" },
+        { "feature": "Dedicated creative lead" },
+        { "feature": "2 rounds of revisions" }
+      ]
+    },
+    {
+      "tier": "Premium",
+      "name": "We Need To Smile",
+      "tagline": "For brands going all in",
+      "price": "Custom pricing — let's talk",
+      "highlighted": false,
+      "features": [
+        { "feature": "Everything in Full Grin" },
+        { "feature": "Ongoing brand strategy partnership" },
+        { "feature": "Unlimited content production" },
+        { "feature": "Quarterly campaign concepts + execution" },
+        { "feature": "Priority turnaround" },
+        { "feature": "Direct access to founding team" }
+      ]
+    }
+  ]
+}
