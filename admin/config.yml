@@ -64,5 +64,6 @@ collections:
     fields:
       - { label: "Name / Story title", name: "title", widget: "string" }
       - { label: "Photo", name: "photo", widget: "image", required: false }
+      - { label: "Photo alt text (describe the photo for accessibility & SEO)", name: "photo_alt", widget: "string", required: false, hint: "e.g. 'Chide smiling while reviewing a storyboard on set'" }
       - { label: "Story number", name: "number", widget: "string" }
       - { label: "Caption", name: "caption", widget: "text" }
