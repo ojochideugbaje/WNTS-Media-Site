@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WNTS Media — We Need To Smile</title>
-<meta name="description" content="WNTS Media is a creative media agency making brands people smile about. Brand strategy, content production, photography & film.">
+<meta name="description" content="WNTS Media is a creative media agency making brands people smile about. Brand strategy, content production, photography & film." id="meta-description">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
@@ -37,8 +37,8 @@ a{color:inherit}
 /* ---------- nav ---------- */
 nav{position:fixed;top:0;left:0;right:0;z-index:50;background:var(--sun);border-bottom:3px solid var(--ink)}
 .nav-in{max-width:1200px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
-.logo{font-family:var(--display);font-weight:800;font-size:1.3rem;letter-spacing:-.02em;text-decoration:none;display:flex;align-items:center;gap:.45em}
-.logo svg{width:30px;height:16px}
+.logo{display:flex;align-items:center;text-decoration:none}
+.logo img{height:34px;width:auto;display:block}
 .nav-links{display:flex;gap:28px;align-items:center;list-style:none}
 .nav-links a{text-decoration:none;font-weight:600;font-size:.95rem;position:relative}
 .nav-links a:not(.btn)::after{content:'';position:absolute;left:0;right:100%;bottom:-4px;height:3px;background:var(--ink);border-radius:3px;transition:right .25s ease}
@@ -165,8 +165,8 @@ h1 .smile-word{position:relative;display:inline-block;color:var(--cobalt)}
 /* ---------- footer ---------- */
 footer{background:var(--ink);color:var(--milk);border-top:1px solid #33301f;padding:26px 0}
 .foot-in{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:.85rem}
-.foot-in .fl{font-family:var(--display);font-weight:800;display:flex;align-items:center;gap:.4em}
-.foot-in .fl svg{width:26px;height:14px}
+.foot-in .fl{display:flex;align-items:center}
+.foot-in .fl img{height:22px;width:auto;display:block;filter:brightness(0) invert(1)}
 
 /* ---------- responsive ---------- */
 @media(max-width:900px){
@@ -203,7 +203,7 @@ footer{background:var(--ink);color:var(--milk);border-top:1px solid #33301f;padd
 
 <nav>
   <div class="nav-in">
-    <a class="logo" href="#top">WNTS<svg style="color:var(--coral)" aria-hidden="true"><use href="#smilearc"/></svg></a>
+    <a class="logo" href="#top"><img src="/images/WNTS_logo.svg" alt="WNTS Media"></a>
     <button class="menu-toggle" aria-label="Toggle menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">Menu</button>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
@@ -218,12 +218,12 @@ footer{background:var(--ink);color:var(--milk);border-top:1px solid #33301f;padd
 
 <header id="top">
   <div class="wrap">
-    <span class="hero-kicker">A creative media agency with a point of view</span>
+    <span class="hero-kicker" id="cms-hero-kicker">A creative media agency with a point of view</span>
     <h1>
-      <span class="line">We need</span>
-      <span class="line">to <span class="smile-word">smile<svg class="smile-stroke" viewBox="0 0 300 60" preserveAspectRatio="none" aria-hidden="true"><path d="M10 12 Q150 70 290 12"/></svg></span>.</span>
+      <span class="line" id="cms-hero-line1">We need</span>
+      <span class="line" id="cms-hero-line2">to <span class="smile-word">smile<svg class="smile-stroke" viewBox="0 0 300 60" preserveAspectRatio="none" aria-hidden="true"><path d="M10 12 Q150 70 290 12"/></svg></span>.</span>
     </h1>
-    <p class="hero-sub">And so does your audience. WNTS Media builds brands, stories, and campaigns people actually feel something about — strategy with soul, content with craft.</p>
+    <p class="hero-sub" id="cms-hero-subhead">And so does your audience. WNTS Media builds brands, stories, and campaigns people actually feel something about — strategy with soul, content with craft.</p>
     <div class="hero-ctas">
       <a class="btn" href="#contact">Work with us</a>
       <a class="btn light" href="#about">Why "We Need To Smile"?</a>
@@ -241,12 +241,12 @@ footer{background:var(--ink);color:var(--milk);border-top:1px solid #33301f;padd
   <div class="wrap manifesto-grid">
     <div class="reveal">
       <span class="eyebrow"><svg style="color:var(--coral)" aria-hidden="true"><use href="#smilearc"/></svg>The why</span>
-      <p class="big-say">Attention is cheap. <em>Affection is earned.</em> We make the kind of work that turns audiences into believers — one honest, joyful story at a time.</p>
+      <p class="big-say" id="cms-manifesto-bigsay">Attention is cheap. <em>Affection is earned.</em> We make the kind of work that turns audiences into believers — one honest, joyful story at a time.</p>
     </div>
     <div class="manifesto-copy reveal">
-      <p><strong>WNTS stands for We Need To Smile</strong> — and we mean it literally. In a feed full of noise, the brands that win are the ones that make people feel something good.</p>
-      <p>We're a creative media agency that combines sharp brand thinking with hands-on production — so the idea and the execution live under one roof, and nothing gets lost in translation between strategy and screen.</p>
-      <p>Small team. Big taste. Zero boring work.</p>
+      <p id="cms-manifesto-p1"><strong>WNTS stands for We Need To Smile</strong> — and we mean it literally. In a feed full of noise, the brands that win are the ones that make people feel something good.</p>
+      <p id="cms-manifesto-p2">We're a creative media agency that combines sharp brand thinking with hands-on production — so the idea and the execution live under one roof, and nothing gets lost in translation between strategy and screen.</p>
+      <p id="cms-manifesto-p3">Small team. Big taste. Zero boring work.</p>
     </div>
   </div>
 </section>
@@ -345,7 +345,7 @@ footer{background:var(--ink);color:var(--milk);border-top:1px solid #33301f;padd
   <div class="wrap">
     <span class="eyebrow reveal"><svg style="color:var(--coral)" aria-hidden="true"><use href="#smilearc"/></svg>Say hello</span>
     <h2 class="reveal">Let's make people <span class="smile-word">smile</span>.</h2>
-    <p class="reveal">Whether you're a brand with a story to tell or a creative looking for your people — our inbox is open and our coffee is hot.</p>
+    <p class="reveal" id="cms-contact-intro">Whether you're a brand with a story to tell or a creative looking for your people — our inbox is open and our coffee is hot.</p>
 
     <form class="contact-form reveal" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="contactForm">
       <input type="hidden" name="form-name" value="contact">
@@ -368,12 +368,12 @@ footer{background:var(--ink);color:var(--milk);border-top:1px solid #33301f;padd
     </form>
 
     <div class="contact-ctas reveal">
-      <a class="btn light" href="mailto:hello@wntsmedia.com">hello@wntsmedia.com</a>
-      <a class="btn" style="background:var(--coral);color:var(--ink)" href="https://instagram.com/wntsmedia" target="_blank" rel="noopener">DM us on Instagram</a>
+      <a class="btn light" id="cms-contact-email" href="mailto:hello@wntsmedia.com">hello@wntsmedia.com</a>
+      <a class="btn" style="background:var(--coral);color:var(--ink)" id="cms-contact-ig" href="https://instagram.com/wntsmedia" target="_blank" rel="noopener">DM us on Instagram</a>
     </div>
     <div class="socials reveal">
-      <a href="https://instagram.com/wntsmedia" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://instagram.com/humansofwnts" target="_blank" rel="noopener">Humans of WNTS</a>
+      <a href="https://instagram.com/wntsmedia" id="cms-social-ig" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://instagram.com/humansofwnts" id="cms-social-humans" target="_blank" rel="noopener">Humans of WNTS</a>
       <a href="#" rel="noopener">TikTok</a>
       <a href="#" rel="noopener">YouTube</a>
     </div>
@@ -382,7 +382,7 @@ footer{background:var(--ink);color:var(--milk);border-top:1px solid #33301f;padd
 
 <footer>
   <div class="foot-in">
-    <span class="fl">WNTS<svg style="color:var(--coral)" aria-hidden="true"><use href="#smilearc"/></svg></span>
+    <span class="fl"><img src="/images/WNTS_logo.svg" alt="WNTS Media"></span>
     <span>© 2026 WNTS Media · We Need To Smile</span>
   </div>
 </footer>
@@ -406,6 +406,50 @@ if(cf){
       .catch(()=>{msg.textContent="Something went wrong. Please email us directly.";msg.className='form-msg err'});
   });
 }
+
+// ---- CMS content loading ----
+// Pulls editable text from /content/*.json (managed via /admin CMS).
+// Falls back silently to the hardcoded copy above if fetch fails (e.g. local preview).
+function setText(id,val){const el=document.getElementById(id);if(el&&val!=null)el.textContent=val}
+function setHTML(id,val){const el=document.getElementById(id);if(el&&val!=null)el.innerHTML=val}
+
+fetch('/content/hero.json').then(r=>r.json()).then(d=>{
+  setText('cms-hero-kicker',d.kicker);
+  setText('cms-hero-subhead',d.subhead);
+}).catch(()=>{});
+
+fetch('/content/manifesto.json').then(r=>r.json()).then(d=>{
+  setHTML('cms-manifesto-bigsay', d.bigsay ? d.bigsay.replace(/Affection is earned\./,'<em>Affection is earned.</em>') : null);
+  setText('cms-manifesto-p1',d.p1);
+  setText('cms-manifesto-p2',d.p2);
+  setText('cms-manifesto-p3',d.p3);
+}).catch(()=>{});
+
+fetch('/content/contact.json').then(r=>r.json()).then(d=>{
+  setText('cms-contact-intro',d.intro);
+  if(d.email){
+    const e=document.getElementById('cms-contact-email');
+    if(e){e.href='mailto:'+d.email;e.textContent=d.email}
+  }
+  if(d.instagram){
+    const ig=document.getElementById('cms-contact-ig');
+    if(ig)ig.href='https://instagram.com/'+d.instagram;
+    const igs=document.getElementById('cms-social-ig');
+    if(igs)igs.href='https://instagram.com/'+d.instagram;
+  }
+  if(d.instagram_humans){
+    const h=document.getElementById('cms-social-humans');
+    if(h)h.href='https://instagram.com/'+d.instagram_humans;
+  }
+}).catch(()=>{});
+
+fetch('/content/seo.json').then(r=>r.json()).then(d=>{
+  if(d.title)document.title=d.title;
+  if(d.description){
+    const m=document.getElementById('meta-description');
+    if(m)m.setAttribute('content',d.description);
+  }
+}).catch(()=>{});
 </script>
 </body>
 </html>
