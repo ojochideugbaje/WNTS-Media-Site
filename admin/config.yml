@@ -37,6 +37,14 @@ collections:
           - { label: "Instagram handle (main)", name: "instagram", widget: "string" }
           - { label: "Instagram handle (Humans of WNTS)", name: "instagram_humans", widget: "string" }
 
+      - name: "seo"
+        label: "SEO (Search Appearance)"
+        file: "content/seo.json"
+        fields:
+          - { label: "Page Title (shows in Google & browser tab)", name: "title", widget: "string" }
+          - { label: "Meta Description (shows under the title in Google)", name: "description", widget: "text" }
+          - { label: "Note", name: "note", widget: "text", default: "Changing these updates Google search results within a few days. The social media share preview (WhatsApp/Twitter/LinkedIn image+text) is separate and needs a manual code update — ask Claude to change it.", required: false }
+
   - name: "services"
     label: "Services"
     folder: "content/services"
