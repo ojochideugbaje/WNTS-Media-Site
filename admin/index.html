@@ -7,6 +7,7 @@
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
+  <!-- Redirects Netlify Identity auth back to this admin page -->
   <script>
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("init", user => {
@@ -19,5 +20,55 @@
     }
   </script>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+  <script>
+  // ---- Custom live SEO preview panel for the Blog collection ----
+  function seoRow(label, ok, detail){
+    return h('div', {style:{display:'flex',alignItems:'center',gap:'8px',padding:'6px 0',fontFamily:'sans-serif',fontSize:'13px'}},
+      h('span', {style:{fontSize:'14px'}}, ok ? '✅' : '⚠️'),
+      h('span', {style:{fontWeight:600}}, label + ':'),
+      h('span', {style:{color:'#555'}}, detail)
+    );
+  }
+
+  var SeoPreview = createClass({
+    render: function(){
+      var entry = this.props.entry;
+      var posts = entry.getIn(['data','posts']) || [];
+      var list = posts.toJS ? posts.toJS() : [];
+
+      if(!list.length){
+        return h('div', {style:{padding:'20px',fontFamily:'sans-serif'}}, 'Add a post to see live SEO checks here.');
+      }
+
+      var cards = list.map(function(post, i){
+        var title = post.title || '';
+        var excerpt = post.excerpt || '';
+        var body = post.body || '';
+        var wordCount = body.trim() ? body.trim().split(/\s+/).length : 0;
+        var titleLen = title.length;
+        var excerptLen = excerpt.length;
+
+        return h('div', {key:i, style:{border:'1px solid #ddd',borderRadius:'10px',padding:'16px',marginBottom:'16px',background:'#fff'}},
+          h('h3', {style:{fontFamily:'sans-serif',fontSize:'15px',marginBottom:'8px'}}, title || '(untitled post ' + (i+1) + ')'),
+          seoRow('Title length', titleLen>0 && titleLen<=60, titleLen + ' chars (aim for under 60)'),
+          seoRow('Excerpt length', excerptLen>0 && excerptLen<=155, excerptLen + ' chars (aim for under 155)'),
+          seoRow('Body length', wordCount>=200, wordCount + ' words (aim for 200+)'),
+          seoRow('Cover image', !!post.cover, post.cover ? 'Set' : 'Not set (optional, but helps sharing)'),
+          seoRow('Slug set', !!post.slug, post.slug || 'Missing — required for the post to have a URL')
+        );
+      });
+
+      return h('div', {style:{padding:'16px',background:'#f5f5f5'}},
+        h('h2', {style:{fontFamily:'sans-serif',fontSize:'17px',marginBottom:'14px'}}, '🔍 Live SEO Check'),
+        cards
+      );
+    }
+  });
+
+  if (window.CMS) {
+    CMS.registerPreviewTemplate('blog', SeoPreview);
+  }
+  </script>
 </body>
 </html>
