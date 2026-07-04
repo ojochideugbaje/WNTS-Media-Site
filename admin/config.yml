@@ -45,6 +45,31 @@ collections:
           - { label: "Meta Description (shows under the title in Google)", name: "description", widget: "text" }
           - { label: "Note", name: "note", widget: "text", default: "Changing these updates Google search results within a few days. The social media share preview (WhatsApp/Twitter/LinkedIn image+text) is separate and needs a manual code update — ask Claude to change it.", required: false }
 
+  - name: "packages"
+    label: "Service Packages"
+    files:
+      - name: "packages"
+        label: "Packages"
+        file: "content/packages.json"
+        fields:
+          - label: "Packages"
+            name: "packages"
+            widget: "list"
+            summary: "{{name}} — {{category}}"
+            fields:
+              - { label: "Category (e.g. Branding, Photography, Wedding, Commercial)", name: "category", widget: "string", required: false }
+              - { label: "Tier label (e.g. Starter) — leave blank for the custom card", name: "tier", widget: "string", required: false }
+              - { label: "Package name", name: "name", widget: "string" }
+              - { label: "Tagline / description", name: "tagline", widget: "string" }
+              - { label: "Price display", name: "price", widget: "string", required: false }
+              - { label: "Highlighted (shows as most popular)", name: "highlighted", widget: "boolean", default: false }
+              - { label: "This is the open-ended 'custom request' card (not a real package)", name: "is_custom", widget: "boolean", default: false }
+              - label: "Included items"
+                name: "features"
+                widget: "list"
+                required: false
+                field: { label: "Feature", name: "feature", widget: "string" }
+
   - name: "blog"
     label: "Blog"
     files:
