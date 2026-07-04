@@ -1,11 +1,13 @@
 {
   "packages": [
     {
+      "category": "Branding",
       "tier": "Starter",
       "name": "Smile Kit",
       "tagline": "For brands just getting their voice together",
       "price": "Custom pricing — let's talk",
       "highlighted": false,
+      "is_custom": false,
       "features": [
         { "feature": "Brand positioning + messaging framework" },
         { "feature": "Core visual identity refresh (logo, color, type)" },
@@ -14,11 +16,13 @@
       ]
     },
     {
+      "category": "Branding",
       "tier": "Growth",
       "name": "Full Grin",
       "tagline": "For brands ready to show up consistently",
       "price": "Custom pricing — let's talk",
       "highlighted": true,
+      "is_custom": false,
       "features": [
         { "feature": "Everything in Smile Kit" },
         { "feature": "Full brand identity system + guidelines" },
@@ -29,11 +33,13 @@
       ]
     },
     {
+      "category": "Branding",
       "tier": "Premium",
       "name": "We Need To Smile",
       "tagline": "For brands going all in",
       "price": "Custom pricing — let's talk",
       "highlighted": false,
+      "is_custom": false,
       "features": [
         { "feature": "Everything in Full Grin" },
         { "feature": "Ongoing brand strategy partnership" },
@@ -42,6 +48,61 @@
         { "feature": "Priority turnaround" },
         { "feature": "Direct access to founding team" }
       ]
+    },
+    {
+      "category": "Photography",
+      "tier": "",
+      "name": "Portfolio / Portrait Session",
+      "tagline": "Headshots, personal branding, and portfolio shoots",
+      "price": "Custom pricing — let's talk",
+      "highlighted": false,
+      "is_custom": false,
+      "features": [
+        { "feature": "1-2 hour studio or on-location session" },
+        { "feature": "Wardrobe + posing guidance" },
+        { "feature": "Professionally edited final gallery" },
+        { "feature": "Digital delivery within 5-7 days" }
+      ]
+    },
+    {
+      "category": "Wedding",
+      "tier": "",
+      "name": "Wedding Photography",
+      "tagline": "Full-day coverage for your big day",
+      "price": "Custom pricing — let's talk",
+      "highlighted": false,
+      "is_custom": false,
+      "features": [
+        { "feature": "Full-day event coverage" },
+        { "feature": "Second shooter available on request" },
+        { "feature": "Edited highlight gallery" },
+        { "feature": "Optional same-day highlight reel" }
+      ]
+    },
+    {
+      "category": "Commercial",
+      "tier": "",
+      "name": "Commercial Shoot",
+      "tagline": "Product, campaign, and brand photography",
+      "price": "Custom pricing — let's talk",
+      "highlighted": false,
+      "is_custom": false,
+      "features": [
+        { "feature": "Product or lifestyle photography" },
+        { "feature": "Usage rights for web + social" },
+        { "feature": "Art direction included" },
+        { "feature": "Fast turnaround for campaigns" }
+      ]
+    },
+    {
+      "category": "",
+      "tier": "",
+      "name": "Not sure what you need?",
+      "tagline": "Tell us what you're working on and we'll figure out the right fit together — no package required.",
+      "price": "",
+      "highlighted": false,
+      "is_custom": true,
+      "features": []
     }
   ]
 }
